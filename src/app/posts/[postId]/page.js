@@ -68,6 +68,8 @@ const CommentPage = () => {
     }
   }
 
+  
+
   useEffect(() => {
     const getUsernameFromCookies = () => {
       const allCookies = document.cookie.split('; ');
@@ -114,12 +116,6 @@ const CommentPage = () => {
     return userIdCookie ? decodeURIComponent(userIdCookie.split('=')[1]) : null;
   };
 
-  const handleCreateComment = () => {
-    if (typeof window !== 'undefined'){
-      localStorage.setItem('currentPostId', postId);
-    } 
-    router.push('/createComment');
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
@@ -146,10 +142,6 @@ const CommentPage = () => {
         event.target.content.value = ''; // Clear the comment input field
         // Fetch comments again to update immediately
         fetchComments(postId);
-  
-        // Refresh the popup by closing and reopening it
-        closeModal();
-        handleViewPost(selectedPost);
       }
     } catch (error) {
       console.error('Error creating post:', error);
@@ -262,17 +254,28 @@ return (
 
         {/* Header for comments */}
         <h2>Comments</h2>
-
         {/* Display all comments */}
         <div className="comment-list">
           {comments
           .filter((comment) => comment.postId === postId)
           .map((comment) => (
-            <div key={comment._id} className="comment">
-              <h4>{comment.poster}</h4>
-              <p>{comment.content}</p>
-            </div>
-          ))}
+            <Comment
+            key={comment._id || index}
+            comment={comment}
+            onCommentUpdate={onCommentUpdate}
+            onReplySubmit={handleReplySubmit}
+            onDeleteComment={handleDeleteComment} // Pass the onDeleteComment function
+            currentUser={username}
+            id={`comment-${comment._id || index}`}
+        />
+          ))}     
+          {comment.replies && comment.replies.map((reply, index) => (
+        <div key={index} style={{ marginLeft: '20px' }}>
+          <Typography variant="body1">
+            <strong>{reply.poster}</strong>: {reply.content}
+          </Typography>
+        </div>
+      ))}
         </div>
       </div>
     </Layout>
