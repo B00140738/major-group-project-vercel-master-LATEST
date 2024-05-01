@@ -1,10 +1,5 @@
 export async function GET(req, res){
     const { MongoClient } = require('mongodb');
-
-    // Get the moduleId from the query parameters
-    const { searchParams } = new URL(req.url);
-    const moduleId = searchParams.get('moduleId');
-    console.log(moduleId);
   
     const url = 'mongodb+srv://b00140738:YtlVhf9tX6yBs2XO@cluster0.j5my8yy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     const client = new MongoClient(url);
@@ -15,7 +10,7 @@ export async function GET(req, res){
     const db = client.db(dbName); // mongodb connection to the database
     const collection = db.collection('commentsandreply');// Get the collection
     // Insert a document in the collection 
-    const findResult = await collection.find({ postId: postId }).toArray();
+    const findResult = await collection.find({}).toArray();
   
     console.log('FDGSOHGFDB =>', findResult); 
     return Response.json(findResult)  //return the result to the client 

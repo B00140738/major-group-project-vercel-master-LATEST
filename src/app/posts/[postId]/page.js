@@ -10,7 +10,7 @@ const CommentPage = () => {
   const [threads, setThreads] = useState([]);
   const [username, setUsername] = useState('');
   const router = useRouter();
-  const { postId } = router.query || {};
+  postId = localStorage.getItem('currentPostId');
   const [comments, setComments] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [email, setEmail] = useState('');
@@ -265,7 +265,9 @@ return (
 
         {/* Display all comments */}
         <div className="comment-list">
-          {comments.map((comment) => (
+          {comments
+          .filter((comment) => comment.postId === postId)
+          .map((comment) => (
             <div key={comment._id} className="comment">
               <h4>{comment.poster}</h4>
               <p>{comment.content}</p>
