@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Box, TextField } from "@mui/material";
