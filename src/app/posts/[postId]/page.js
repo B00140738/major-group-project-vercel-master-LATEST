@@ -224,19 +224,19 @@ return (
   <Layout>
       <div className='container'>
         {/* Text area and submit button for adding new comments */}
-        <Box component="form" onSubmit={handleCommentSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            label="Add a comment"
-            type="text"
-            fullWidth
-          />
-          <Button type="submit" variant="contained" sx={{ mt: 3 }}>
-            Submit
-          </Button>
-        </Box>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
+          <p>{username}</p> {/* Display username here */}
+            <TextField
+              margin="normal"
+              name="content"
+              label="Content"
+              type="text"
+              id="content"
+            />
+            <Button type="submit" variant="contained" sx={{mt: 3, mb: 2}}>
+              Submit
+            </Button>
+          </Box>
 
         {/* Header for comments */}
         <h2>Comments</h2>
