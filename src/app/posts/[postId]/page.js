@@ -10,7 +10,7 @@ const CommentPage = () => {
   const [threads, setThreads] = useState([]);
   const [username, setUsername] = useState('');
   const router = useRouter();
-  const postId = localStorage.getItem('currentPostId');
+  const { postId } = router.query;
   const [comments, setComments] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [email, setEmail] = useState('');
@@ -35,7 +35,7 @@ const CommentPage = () => {
       console.error('Error fetching comments:', error);
     }
   };
-  
+
   useEffect(() => {
     if (router.query && router.query.moduleId) {
       const { moduleId } = router.query;
