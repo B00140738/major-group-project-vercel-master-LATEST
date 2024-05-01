@@ -260,6 +260,9 @@ const onCommentUpdate = async (commentId, newContent) => {
 };
 
 const handleViewPost = (postId) => {
+  if (typeof window !=='undefined'){
+    postId = localStorage.setItem('currentPostId', postId);
+  }
   router.push(`/posts/${postId}`);
 };
 
