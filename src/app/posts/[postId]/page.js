@@ -16,21 +16,20 @@ const CommentPage = () => {
   const [email, setEmail] = useState('');
   
   useEffect(() => {
-    // Fetch comments when postId changes
-    if (postId) {
-      fetchComments(postId);
-    }
-  }, [postId]);
+    // Fetch comments when component mounts
+    fetchComments();
+  }, []);
 
-  const fetchComments = async (postId) => {
+  const fetchComments = async () => {
     try {
-      // Fetch comments for the post
-      const response = await fetch(`/api/getCommentsById?postId=${postId}`);
+      // Make a GET request to your API endpoint
+      const response = await fetch('`/api/getCommentsById?postId=${postId}`'); // Update the URL with your actual API endpoint
       if (!response.ok) {
         throw new Error('Failed to fetch comments');
       }
-      const commentsData = await response.json();
-      setComments(commentsData);
+      const data = await response.json();
+      console.log('Comments:', data); // Log the data to the console
+      setComments(data); // Update state with the fetched comments
     } catch (error) {
       console.error('Error fetching comments:', error);
     }
