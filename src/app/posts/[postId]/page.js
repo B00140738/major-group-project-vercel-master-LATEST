@@ -258,5 +258,3 @@ return (
 };
 
 export default CommentPage;
-
-
