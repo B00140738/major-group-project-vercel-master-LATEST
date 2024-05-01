@@ -16,6 +16,27 @@ const CommentPage = () => {
   const [email, setEmail] = useState('');
   
   useEffect(() => {
+    // Fetch comments when postId changes
+    if (postId) {
+      fetchComments(postId);
+    }
+  }, [postId]);
+
+  const fetchComments = async (postId) => {
+    try {
+      // Fetch comments for the post
+      const response = await fetch(`/api/getCommentsById?postId=${postId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch comments');
+      }
+      const commentsData = await response.json();
+      setComments(commentsData);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  };
+  
+  useEffect(() => {
     if (router.query && router.query.moduleId) {
       const { moduleId } = router.query;
       setModuleId(moduleId);
