@@ -184,15 +184,17 @@ const ModulePage = () => {
         // Update comments state to include the new comment
         setComments(prevComments => [...prevComments, newComment]);
         event.target.content.value = ''; // Clear the comment input field
-        
         // Fetch comments again to update immediately
-        fetchComments(postId); // Assuming fetchComments function exists and works properly
+        fetchComments(postId);
+  
+        // Refresh the popup by closing and reopening it
+        closeModal();
+        handleViewPost(selectedPost);
       }
     } catch (error) {
       console.error('Error creating post:', error);
     }
   };
-  
 
 
   const handleReplySubmit = async (parentCommentId, replyContent) => {
