@@ -18,7 +18,7 @@ const CommentPage = () => {
   useEffect(() => {
     // Fetch comments when component mounts
     fetchComments();
-  }, []);
+  });
 
   const fetchComments = async () => {
     try {
