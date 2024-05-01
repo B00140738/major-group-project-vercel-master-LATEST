@@ -122,21 +122,19 @@ const CommentPage = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-    
+
     const content = event.target.content.value.trim();
     if (!content) return; // Basic validation to prevent empty comments
-  
+
     // Check if username is available
     if (!username) {
       console.error('Username is not available.');
       return;
     }
-  
+
     const timestamp = new Date();
     const poster = username; // Assign the username to poster
-    const postId = selectedPost._id;
-  
+
     try {
       const response = await runDBCallAsync(`/api/createComment?poster=${poster}&content=${content}&timestamp=${timestamp}&postId=${postId}`, {});
       if (response && response.data === "true") {
@@ -146,10 +144,6 @@ const CommentPage = () => {
         event.target.content.value = ''; // Clear the comment input field
         // Fetch comments again to update immediately
         fetchComments(postId);
-  
-        // Refresh the popup by closing and reopening it
-        closeModal();
-        handleViewPost(selectedPost);
       }
     } catch (error) {
       console.error('Error creating post:', error);
