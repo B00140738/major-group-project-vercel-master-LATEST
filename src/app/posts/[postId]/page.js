@@ -22,22 +22,7 @@ const CommentPage = () => {
       fetchPostsByModule(moduleId);
     }
   }, [router.query]);
-
-  useEffect(() => {
-    const fetchPostsForModule = async () => {
-      if (!moduleId) return;
-      try {
-        const response = await fetch(`/api/getPostByModule?moduleId=${moduleId}`);
-        if (!response.ok) throw new Error('Failed to fetch posts for module');
-        const data = await response.json();
-        setPosts(data.posts || []);
-      } catch (error) {
-        console.error('Error fetching posts for module:', error);
-      }
-    };
-
-    fetchPostsForModule();
-  }, [moduleId]);
+  
 
   async function runDBCallAsync(url, formData){
     try {
