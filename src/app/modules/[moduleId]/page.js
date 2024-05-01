@@ -13,7 +13,7 @@ const ModulePage = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [username, setUsername] = useState('');
   const router = useRouter();
-  const postId = localStorage.getItem('currentPostId');
+  const moduleId = localStorage.getItem('currentModuleId');
   const [comments, setComments] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -39,7 +39,7 @@ const ModulePage = () => {
       console.error('Error fetching comments:', error);
     }
   };
-
+  
   useEffect(() => {
     if (router.query && router.query.moduleId) {
       const { moduleId } = router.query;
