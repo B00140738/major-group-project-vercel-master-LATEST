@@ -23,7 +23,7 @@ const CommentPage = () => {
   const fetchComments = async () => {
     try {
       // Make a GET request to your API endpoint
-      const response = await fetch('`/api/getCommentsById?postId=${postId}`'); // Update the URL with your actual API endpoint
+      const response = await fetch(`/api/getCommentsById?postId=${postId}`); // Update the URL with your actual API endpoint
       if (!response.ok) {
         throw new Error('Failed to fetch comments');
       }
