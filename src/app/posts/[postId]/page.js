@@ -1,3 +1,4 @@
+"use client";
 // CommentPage.js
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
