@@ -21,6 +21,19 @@ const CommentPage = () => {
     fetchUserInfo();
   }, []);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const content = event.target.content.value.trim();
+    if (!content) return; // Basic validation to prevent empty comments
+
+    // Check if username is available
+    if (!username) {
+      console.error('Username is not available.');
+      return;
+    }
+  }
+
   const fetchComments = async () => {
     try {
       // Make a GET request to your API endpoint
