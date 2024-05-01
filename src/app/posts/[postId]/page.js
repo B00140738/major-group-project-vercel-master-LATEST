@@ -10,7 +10,7 @@ const CommentPage = () => {
   const [threads, setThreads] = useState([]);
   const [username, setUsername] = useState('');
   const router = useRouter();
-  postId = localStorage.getItem('currentPostId');
+  const postId = localStorage.getItem('currentPostId');
   const [comments, setComments] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [email, setEmail] = useState('');
